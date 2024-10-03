@@ -1,4 +1,4 @@
-let username=document.getElementById("username")
+let email=document.getElementById("email")
 let password=document.getElementById("password")
 let button=document.getElementById("button")
 let error =document.querySelectorAll(".error")
@@ -6,7 +6,10 @@ let error =document.querySelectorAll(".error")
 button.addEventListener("click",function (e) {
         e.preventDefault()
         valid=true
-        if (!username.value) {
+
+        user= JSON.parse(sessionStorage.getItem('seyi'))
+     
+        if (!email.value) {
             error[0].innerHTML="enter valid username"
           valid=false
             
@@ -17,18 +20,21 @@ button.addEventListener("click",function (e) {
 
         }
 
-        if (valid) {
-            let user={
-                username:username.value,
-                password:password.value
+       if (user) {
+          if (email.value == user.email) {
+            if (password.value == user.password) {
+              alert('login successsfully')
+              setTimeout(() => {
+                location.href = 'welcome.html'
+              }, 1000);
+            } else {
+              alert('enter password')
             }
-            user= JSON.stringify(user)
-            sessionStorage.getItem("seyi",user)
-            alert("login sucessful")
-
-            setTimeout(() => {
-                location.href='welcome.html'
-            }, 1000);
+          } else {
+            alert('enter email')
+          }
+       } else {
+         alert('please register')
+       }
             
-        }
 })

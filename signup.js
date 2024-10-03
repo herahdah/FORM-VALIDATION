@@ -7,7 +7,7 @@ let check =document.getElementById('check')
 let error =document.querySelectorAll(".error")
 
 btnsubmit.addEventListener("click",function(e) {
-    e.preventDefault()
+    // e.preventDefault()
     valid=true
     if (!username.value) {
         error[0].innerHTML="enter your username"
